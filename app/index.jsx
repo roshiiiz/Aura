@@ -4,11 +4,16 @@ import { Redirect, router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {images} from '../constants';
 import CustomButton from '../components/CustomButton'  
+import { useGlobalContext } from '../context/GlobalProvider'
 
 export default function App() {
+
+  const {Loading,isLoggedIn}=useGlobalContext();
+  if(!Loading && isLoggedIn) return <Redirect href="/home" />
+
   return(
   <SafeAreaView className="bg-primary h-full">
-    <ScrollView contentContainerStyle={{height:'100%'}}>
+    <ScrollView contentContainerStyle={{height:'100'}}>
       <View className="w-full justify-center items-center min-h-[85vh] px-4">
 
       <Image 
@@ -38,7 +43,7 @@ export default function App() {
         <Text className="text-sm font-pregular text-white mt-7 text-center">Where creativity meets innovation: embark on a journey of limitless exploration with Aora</Text>
       
       <CustomButton
-      title="Continue With Email"
+      title="Continue With Login"
       handlePress={()=> router.push('/sign-in')}
       containerStyles="w-full mt-7"
       />
