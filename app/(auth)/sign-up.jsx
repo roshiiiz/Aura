@@ -75,7 +75,7 @@ const SignUp = () => {
             title="Create Account"
             handlePress={submit}
             containerStyles="mt-7"
-            isLoading={isSubmitting}
+            loading={isSubmitting}
           />
 
           <View className="justify-center pt-5 flex-row gap-2">

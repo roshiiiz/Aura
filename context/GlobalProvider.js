@@ -10,9 +10,8 @@ const GlobalProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const res = await getCurrentUser();
+    getCurrentUser()
+      .then((res) => {
         if (res) {
           setIsLogged(true);
           setUser(res);
@@ -20,20 +19,25 @@ const GlobalProvider = ({ children }) => {
           setIsLogged(false);
           setUser(null);
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         console.log(error);
-        setIsLogged(false);
-        setUser(null);
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-
-    checkUser();
+      });
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ isLogged, setIsLogged, user, setUser, loading }}>
+    <GlobalContext.Provider 
+    value={{
+        isLogged,
+        setIsLogged, 
+        user, 
+        setUser,
+        loading
+        }}
+    >
       {children}
     </GlobalContext.Provider>
   );
