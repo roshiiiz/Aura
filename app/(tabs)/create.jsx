@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, Alert } from 'react-native'
 import React from 'react'
-import FormField from "../../components/FormField";
+import FormFieldd from '../../components/FormFieldd.jsx';
 import { useState } from 'react';
 import {Video,ResizeMode} from 'expo-av'
 import { icons } from '../../constants';
@@ -80,7 +80,7 @@ const Create = () => {
         <Text className="text-2xl text-black font-psemibold">
           Upload Video
         </Text>
-        <FormField
+        <FormFieldd
         title="Video Title"
         value={form.title}
         placeholder="Give Your Video A Catch Title ... "
@@ -88,7 +88,7 @@ const Create = () => {
         otherStyles="mt-10"
         />
         <View className="mt-7 space-y-2">
-          <Text className="text-base text-grey-100 font-pmedium">
+          <Text className="text-base text-black font-pmedium">
             Upload Video
           </Text>
           <TouchableOpacity onPress={()=>openPicker('video')}>
@@ -109,7 +109,7 @@ const Create = () => {
           </TouchableOpacity>
         </View>
         <View className="mt-7 space-y-2">
-        <Text className="text-base text-grey-100 font-pmedium">
+        <Text className="text-base text-white font-pmedium">
             Thumbnail Image
           </Text>
 
@@ -132,7 +132,7 @@ const Create = () => {
           </TouchableOpacity>
 
         </View>
-        <FormField
+        <FormFieldd
         title="AI Prompt"
         value={form.prompt}
         placeholder="The Prompt you used to create this video"
