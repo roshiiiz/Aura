@@ -8,8 +8,10 @@ import EmptyState from '../../components/EmptyState'
 import { getAllPosts,getLatestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 import TempVideoCard from '../../components/TempVideoCard'
+import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
+  const { user, setUser, setIsLogged } = useGlobalContext();
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { data: latestPosts } = useAppwrite(getLatestPosts);
 
@@ -29,11 +31,11 @@ const Home = () => {
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (
           <TempVideoCard
-            title={item.title}
-            thumbnail={item.thumbnail}
             video={item.video}
+            title={item.title}
             users={item.users.username}
             avatar={item.users.avatar}
+            thumbnail={item.thumbnail}
           />
         )}
       ListHeaderComponent={()=>(
@@ -41,10 +43,10 @@ const Home = () => {
           <View className="justify-between items-start flex-row mb-6">
             <View>
               <Text className="font-pmedium text-sm text-black-100">
-                Welcome Back
+                Welcome Back,
               </Text>
               <Text className="text-2xl font-psemibold text-black">
-                RoshiiiZ
+                {user?.username}
               </Text>
             </View>
             <View className="mt-1.5">

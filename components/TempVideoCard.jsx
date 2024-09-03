@@ -3,18 +3,19 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { ResizeMode, Video } from "expo-av";
 import { icons } from "../constants";
 
-const TempVideoCard = ({ video, title, users, avatar, thumbnail, videoUrl }) => {
+const TempVideoCard = ({ video, title, users, avatar, thumbnail }) => {
   const [play, setPlay] = useState(false);
 
-  const videoData = video || {};
+  const videoSource = video;
   const videoTitle = title || videoData.title;
   const videoUsers = users || videoData.users || {};
   const videoAvatar = avatar || videoUsers.avatar;
   const videoThumbnail = thumbnail || videoData.thumbnail;
-  const videoSource = videoUrl || videoData.video;
   const username = videoUsers.username || videoUsers;
+  
 
   return (
+    
     <View className="flex flex-col items-center px-4 mb-14">
       <View className="flex flex-row gap-3 items-start">
         <View className="flex justify-center items-center flex-row flex-1">
